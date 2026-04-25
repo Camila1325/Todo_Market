@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 .env
-stitch_results.json
+stitch_mcp_config.json
