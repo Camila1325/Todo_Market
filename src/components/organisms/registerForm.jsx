@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '../atoms/button';
 import { FormField } from '../molecules/formField';
 import { SocialButton } from '../molecules/socialButton';
+import { registerWithEmail } from '../../back/auth';
 
 export const RegisterForm = ({ onSwitchToLogin }) => {
     const navigate = useNavigate();
@@ -47,11 +48,16 @@ export const RegisterForm = ({ onSwitchToLogin }) => {
         if (!validate()) return;
 
         setIsLoading(true);
-        // Simular llamada a API
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        const displayName = `${formData.firstName} ${formData.lastName}`;
+        const result = await registerWithEmail(formData.email, formData.password, displayName);
         setIsLoading(false);
-        console.log('Registro exitoso:', formData);
-        navigate('/'); // Redirigir al home tras registro
+
+        if (result.success) {
+            console.log('Registro exitoso:', result.user);
+            navigate('/');
+        } else {
+            setErrors({ form: 'Error al crear la cuenta. Es posible que el correo ya esté en uso.' });
+        }
     };
 
     return (
@@ -78,6 +84,13 @@ export const RegisterForm = ({ onSwitchToLogin }) => {
                     <span className="bg-white px-4 text-gray-400 uppercase tracking-widest text-[10px]">o regístrate con tu email</span>
                 </div>
             </div>
+
+            {errors.form && (
+                <div className="mb-6 p-4 bg-red-50 border border-red-100 rounded-xl flex items-center gap-3 text-red-600 animate-in fade-in slide-in-from-top-2 duration-300">
+                    <span className="material-symbols-outlined">error</span>
+                    <p className="text-xs font-medium">{errors.form}</p>
+                </div>
+            )}
 
             <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

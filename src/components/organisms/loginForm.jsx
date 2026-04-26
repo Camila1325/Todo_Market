@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '../atoms/button';
 import { FormField } from '../molecules/formField';
 import { SocialButton } from '../molecules/socialButton';
+import { loginWithEmail } from '../../back/auth';
 
 export const LoginForm = ({ onSwitchToRegister }) => {
     const navigate = useNavigate();
@@ -36,10 +37,15 @@ export const LoginForm = ({ onSwitchToRegister }) => {
         if (!validate()) return;
 
         setIsLoading(true);
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        const result = await loginWithEmail(formData.email, formData.password);
         setIsLoading(false);
-        console.log('Login exitoso:', formData);
-        navigate('/'); // Redirigir al home tras login
+
+        if (result.success) {
+            console.log('Login exitoso:', result.user);
+            navigate('/');
+        } else {
+            setErrors({ form: 'Email o contraseña incorrectos. Por favor, verifica tus datos.' });
+        }
     };
 
     return (
@@ -61,6 +67,13 @@ export const LoginForm = ({ onSwitchToRegister }) => {
                     <span className="bg-white px-4 text-gray-400 uppercase tracking-widest text-[10px]">o usa tu email</span>
                 </div>
             </div>
+
+            {errors.form && (
+                <div className="mb-6 p-4 bg-red-50 border border-red-100 rounded-xl flex items-center gap-3 text-red-600 animate-in fade-in slide-in-from-top-2 duration-300">
+                    <span className="material-symbols-outlined">error</span>
+                    <p className="text-xs font-medium">{errors.form}</p>
+                </div>
+            )}
 
             <form className="space-y-5" onSubmit={handleSubmit}>
                 <FormField
