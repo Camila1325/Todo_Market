@@ -31,14 +31,14 @@ export const RegisterForm = ({ onSwitchToLogin }) => {
 
             <form className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
-                    <FormField label="Nombre" id="first-name" type="text" placeholder="Alex" />
-                    <FormField label="Apellido" id="last-name" type="text" placeholder="Johnson" />
+                    <FormField label="Nombre" id="first-name" type="text" placeholder=" Alex" />
+                    <FormField label="Apellido" id="last-name" type="text" placeholder=" Johnson" />
                 </div>
-                
-                <FormField label="Email" id="email" type="email" placeholder="tu@ejemplo.com" />
-                
-                <FormField label="Contraseña" id="password" type="password" placeholder="••••••••" />
-                
+
+                <FormField label="Email" id="email" type="email" placeholder=" tu@ejemplo.com" />
+
+                <FormField label="Contraseña" id="password" type="password" placeholder=" ••••••••" />
+
                 <div className="flex items-start gap-2 pt-2">
                     <input type="checkbox" id="terms" className="mt-1 rounded border-gray-300 text-orange-600 focus:ring-orange-500" />
                     <label htmlFor="terms" className="text-xs text-gray-500 leading-tight">
@@ -52,7 +52,7 @@ export const RegisterForm = ({ onSwitchToLogin }) => {
             <div className="mt-6 text-center">
                 <p className="text-sm text-gray-600">
                     ¿Ya tienes una cuenta?{' '}
-                    <button 
+                    <button
                         onClick={onSwitchToLogin}
                         className="font-bold text-orange-600 hover:text-orange-500 transition-colors"
                     >
