@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MainLayout } from '../components/templates/mainLayout';
 import { ProfileHeader } from '../components/molecules/profileHeader';
 import { ProfileStats } from '../components/molecules/profileStats';
 import { ProfileMenu } from '../components/organisms/profileMenu';
+import { useAuth } from '../context/AuthContext';
 
 const Perfil = () => {
-    // Datos demo extraídos del diseño de Stitch
+    const { user, loading } = useAuth();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!loading && !user) {
+            navigate('/auth');
+        }
+    }, [user, loading, navigate]);
+
+    if (loading || !user) return null;
+
     const userData = {
-        name: "Alex Johnson",
-        email: "alex.johnson@example.com",
-        avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuDxwUXEwrimsFIhCuhWDX1t9FLG3KkJ5fAzOKo41gk_z767bGP_8Ia7utOTcKtdifoixQc-uAEwX3gWPqmjvyglsc7pjVUHNHtA8HtfipFTgQgA5NYHnvK2pH0YZt2Eil2pCzIArTu_K76OvQg0DGzOGE8_4342bfmfzCJuRNktjU9TgTLrlGbnMsVb1Mux2WREOsdqBx5NEV_enKfc1X5TnzDt7zBxDVPpV2aKmQy92ZXBWOj0kXn8Pfooh8cOorNZxGDEM-Qp_wn9"
+        name: user.displayName || "Usuario de Todo Market",
+        email: user.email,
+        avatar: user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || user.email)}&background=f97316&color=fff&size=256`
     };
 
     const stats = {
