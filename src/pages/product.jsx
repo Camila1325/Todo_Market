@@ -49,7 +49,7 @@ const Product = () => {
                     description={product.description}
                 />
             }
-            actions={<ProductActions />}
+            actions={<ProductActions product={product} />}
             tabs={<ProductDetailTabs specs={product.specs} />}
             relatedProducts={<ProductGrid products={relatedProducts} />}
         />

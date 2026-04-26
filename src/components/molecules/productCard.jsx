@@ -35,10 +35,10 @@ export const ProductCard = ({ product }) => {
                     <IconButton
                         icon="favorite"
                         onClick={handleToggleFavorite}
-                        className={`absolute top-3 right-3 h-9 w-9 backdrop-blur-sm transition-colors ${
+                        className={`absolute top-3 right-3 h-9 w-9 backdrop-blur-sm transition-all duration-300 ${
                             isFavorite 
-                                ? 'bg-orange-600 text-white shadow-lg' 
-                                : 'bg-white/90 text-gray-400 hover:text-orange-600'
+                                ? 'text-red-500 bg-white shadow-md scale-110' 
+                                : 'bg-white/90 text-gray-400 hover:text-red-500'
                         }`}
                         fill={isFavorite}
                     />
