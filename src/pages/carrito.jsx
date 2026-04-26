@@ -3,11 +3,12 @@ import { MainLayout } from '../components/templates/mainLayout';
 import { CartItem } from '../components/molecules/cartItem';
 import { OrderSummary } from '../components/organisms/orderSummary';
 import { useCart } from '../context/CartContext';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/atoms/button';
 
 const Carrito = () => {
     const { cart, cartTotal } = useCart();
+    const navigate = useNavigate();
 
     const shipping = 0;
     const tax = cartTotal * 0.19; // 19% IVA (Example)
@@ -22,11 +23,13 @@ const Carrito = () => {
                     </div>
                     <h1 className="text-3xl font-black text-gray-900">Tu carrito está vacío</h1>
                     <p className="text-gray-500 mt-4 mb-10 max-w-md mx-auto">Parece que aún no has añadido nada. ¡Explora nuestra tienda y encuentra algo increíble!</p>
-                    <Link to="/store">
-                        <Button variant="primary" className="px-8 py-3">
-                            Explorar Tienda
-                        </Button>
-                    </Link>
+                    <Button 
+                        variant="primary" 
+                        className="px-8 py-3"
+                        onClick={() => navigate('/')}
+                    >
+                        Volver al Inicio
+                    </Button>
                 </div>
             </MainLayout>
         );

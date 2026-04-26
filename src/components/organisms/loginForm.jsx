@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../atoms/button';
 import { FormField } from '../molecules/formField';
 import { SocialButton } from '../molecules/socialButton';
 
 export const LoginForm = ({ onSwitchToRegister }) => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -37,7 +39,7 @@ export const LoginForm = ({ onSwitchToRegister }) => {
         await new Promise(resolve => setTimeout(resolve, 1500));
         setIsLoading(false);
         console.log('Login exitoso:', formData);
-        alert('¡Bienvenido de nuevo! (Simulado)');
+        navigate('/'); // Redirigir al home tras login
     };
 
     return (

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../atoms/button';
 
 export const SuccessMessage = () => {
+    const navigate = useNavigate();
     return (
         <section className="flex flex-col items-center justify-center py-20 bg-white rounded-3xl shadow-xl shadow-gray-200/50 border border-gray-100 max-w-3xl mx-auto w-full text-center px-10 gap-8 animate-in fade-in zoom-in duration-500">
             <div className="w-24 h-24 rounded-full bg-green-50 flex items-center justify-center">
@@ -22,11 +23,13 @@ export const SuccessMessage = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full sm:w-auto">
-                <Link to="/">
-                    <Button variant="primary" className="w-full sm:px-10 py-4">
-                        Volver al Inicio
-                    </Button>
-                </Link>
+                <Button 
+                    variant="primary" 
+                    className="w-full sm:px-10 py-4"
+                    onClick={() => navigate('/')}
+                >
+                    Volver al Inicio
+                </Button>
                 <Button variant="outline" className="w-full sm:px-10 py-4">
                     Ver Comprobante
                 </Button>

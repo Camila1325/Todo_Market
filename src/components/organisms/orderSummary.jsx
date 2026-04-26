@@ -1,8 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../atoms/button';
 
 export const OrderSummary = ({ subtotal, shipping, tax, total }) => {
+    const navigate = useNavigate();
+    const [isProcessing, setIsProcessing] = useState(false);
+
+    const handleCheckout = async () => {
+        setIsProcessing(true);
+        // Simular una pequeña validación o preparación del pedido
+        await new Promise(resolve => setTimeout(resolve, 800));
+        setIsProcessing(false);
+        navigate('/checkout');
+    };
+
     return (
         <div className="bg-white rounded-2xl p-8 shadow-xl shadow-gray-200/50 border border-gray-100 flex flex-col gap-6 h-fit sticky top-24">
             <h3 className="text-2xl font-bold text-gray-900">Resumen del Pedido</h3>
@@ -29,11 +40,21 @@ export const OrderSummary = ({ subtotal, shipping, tax, total }) => {
                 <span className="text-3xl font-black text-orange-600">${total.toFixed(2)}</span>
             </div>
 
-            <Link to="/checkout" className="w-full">
-                <Button variant="primary" className="w-full py-4 text-lg">
-                    Proceder al Pago
-                </Button>
-            </Link>
+            <Button 
+                variant="primary" 
+                className="w-full py-4 text-lg flex items-center justify-center gap-2"
+                onClick={handleCheckout}
+                disabled={isProcessing}
+            >
+                {isProcessing ? (
+                    <>
+                        <span className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full"></span>
+                        Preparando Pago...
+                    </>
+                ) : (
+                    'Proceder al Pago'
+                )}
+            </Button>
 
             <div className="flex items-center justify-center gap-2 text-gray-400 text-sm">
                 <span className="material-symbols-outlined text-base">lock</span>

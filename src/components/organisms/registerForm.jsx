@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../atoms/button';
 import { FormField } from '../molecules/formField';
 import { SocialButton } from '../molecules/socialButton';
 
 export const RegisterForm = ({ onSwitchToLogin }) => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -49,7 +51,7 @@ export const RegisterForm = ({ onSwitchToLogin }) => {
         await new Promise(resolve => setTimeout(resolve, 1500));
         setIsLoading(false);
         console.log('Registro exitoso:', formData);
-        alert('¡Cuenta creada con éxito! (Simulado)');
+        navigate('/'); // Redirigir al home tras registro
     };
 
     return (
