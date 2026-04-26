@@ -29,13 +29,14 @@ export const RegisterForm = ({ onSwitchToLogin }) => {
 
     const handleChange = (e) => {
         const { id, value, type, checked } = e.target;
+        const fieldName = id;
         setFormData(prev => ({
             ...prev,
-            [id.replace('-', '')]: type === 'checkbox' ? checked : value
+            [fieldName]: type === 'checkbox' ? checked : value
         }));
         // Clear error when user starts typing
-        if (errors[id.replace('-', '')]) {
-            setErrors(prev => ({ ...prev, [id.replace('-', '')]: null }));
+        if (errors[fieldName]) {
+            setErrors(prev => ({ ...prev, [fieldName]: null }));
         }
     };
 
