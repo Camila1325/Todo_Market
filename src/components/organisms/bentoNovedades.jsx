@@ -17,7 +17,7 @@ export const BentoNovedades = ({ featured, secondaries }) => {
                         <span className="bg-orange-600 text-white px-3 py-1 rounded text-xs font-bold w-fit mb-2">Recién Llegado</span>
                         <h3 className="text-3xl font-bold text-white mb-1">{featured.title}</h3>
                         <p className="text-gray-200 mb-4 max-w-md">{featured.description}</p>
-                        <Button className="w-fit px-8 py-3 bg-white text-gray-900 hover:bg-gray-100">
+                        <Button variant="primary" className="w-fit px-8 py-3">
                             Comprar Ahora - {featured.price}
                         </Button>
                     </div>

@@ -14,13 +14,17 @@ export const Navbar = () => {
                 <div className="flex items-center gap-8 font-medium text-gray-600">
                     <Link to="/store" className="hover:text-orange-600 transition-colors">Catálogo</Link>
                     <Link to="/auth">
-                        <Button variant="secondary" className="px-5 py-2 rounded-full text-sm">
+                        <Button variant="primary" className="px-5 py-2 rounded-full text-sm">
                             Iniciar Sesión
                         </Button>
                     </Link>
                     <Link to="/carrito" className="text-gray-600 hover:text-orange-600 transition-colors flex items-center gap-1">
                         <span className="material-symbols-outlined">shopping_cart</span>
                         <span className="hidden sm:inline">Carrito</span>
+                    </Link>
+                    <Link to="/perfil" className="text-gray-600 hover:text-orange-600 transition-colors flex items-center gap-1 border-l border-gray-100 pl-4">
+                        <span className="material-symbols-outlined">person</span>
+                        <span className="hidden sm:inline">Mi Perfil</span>
                     </Link>
                 </div>
             </div>

@@ -46,8 +46,8 @@ export const ProductCard = ({ product }) => {
                 </div>
 
                 <Button
-                    variant="outline"
-                    className="w-full py-2 text-sm border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white transition-colors"
+                    variant="primary"
+                    className="w-full py-2 text-sm"
                 >
                     <span className="material-symbols-outlined text-lg">add_shopping_cart</span>
                     Añadir
