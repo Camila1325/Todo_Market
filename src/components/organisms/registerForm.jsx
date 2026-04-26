@@ -77,7 +77,7 @@ export const RegisterForm = ({ onSwitchToLogin }) => {
             </div>
 
             <form className="space-y-4" onSubmit={handleSubmit}>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <FormField
                         label="Nombre"
                         id="firstName"
