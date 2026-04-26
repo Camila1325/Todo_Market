@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '../atoms/button';
 
 export const OrderSummary = ({ subtotal, shipping, tax, total }) => {
@@ -28,9 +29,11 @@ export const OrderSummary = ({ subtotal, shipping, tax, total }) => {
                 <span className="text-3xl font-black text-orange-600">${total.toFixed(2)}</span>
             </div>
 
-            <Button variant="primary" className="w-full py-4 text-lg">
-                Proceder al Pago
-            </Button>
+            <Link to="/checkout" className="w-full">
+                <Button variant="primary" className="w-full py-4 text-lg">
+                    Proceder al Pago
+                </Button>
+            </Link>
 
             <div className="flex items-center justify-center gap-2 text-gray-400 text-sm">
                 <span className="material-symbols-outlined text-base">lock</span>
