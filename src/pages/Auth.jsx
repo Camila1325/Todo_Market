@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Logo } from '../components/atoms/logo';
 import { LoginForm } from '../components/organisms/loginForm';
 import { RegisterForm } from '../components/organisms/registerForm';
@@ -31,12 +32,22 @@ const Auth = () => {
         </p>
       </div>
 
-      <div className="mt-4 sm:mx-auto sm:w-full sm:max-w-md animate-in fade-in slide-in-from-bottom duration-500">
-        {isLogin ? (
-          <LoginForm onSwitchToRegister={() => setIsLogin(false)} />
-        ) : (
-          <RegisterForm onSwitchToLogin={() => setIsLogin(true)} />
-        )}
+      <div className="mt-4 sm:mx-auto sm:w-full sm:max-w-md relative overflow-hidden min-h-[500px]">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={isLogin ? 'login' : 'register'}
+            initial={{ opacity: 0, x: isLogin ? -20 : 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: isLogin ? 20 : -20 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+          >
+            {isLogin ? (
+              <LoginForm onSwitchToRegister={() => setIsLogin(false)} />
+            ) : (
+              <RegisterForm onSwitchToLogin={() => setIsLogin(true)} />
+            )}
+          </motion.div>
+        </AnimatePresence>
 
         <p className="mt-10 text-center text-xs text-gray-400">
           &copy; 2026 Todo Market. Proyecto con React y Firebase.

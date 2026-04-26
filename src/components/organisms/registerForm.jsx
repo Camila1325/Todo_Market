@@ -1,9 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '../atoms/button';
 import { FormField } from '../molecules/formField';
 import { SocialButton } from '../molecules/socialButton';
 
 export const RegisterForm = ({ onSwitchToLogin }) => {
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        terms: false
+    });
+    const [errors, setErrors] = useState({});
+    const [showPassword, setShowPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+
+    const validate = () => {
+        const newErrors = {};
+        if (!formData.firstName.trim()) newErrors.firstName = 'El nombre es obligatorio';
+        if (!formData.lastName.trim()) newErrors.lastName = 'El apellido es obligatorio';
+        if (!formData.email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)) newErrors.email = 'Email inválido';
+        if (formData.password.length < 8) newErrors.password = 'Mínimo 8 caracteres';
+        if (!formData.terms) newErrors.terms = 'Debes aceptar los términos';
+        
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleChange = (e) => {
+        const { id, value, type, checked } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [id.replace('-', '')]: type === 'checkbox' ? checked : value
+        }));
+        // Clear error when user starts typing
+        if (errors[id.replace('-', '')]) {
+            setErrors(prev => ({ ...prev, [id.replace('-', '')]: null }));
+        }
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!validate()) return;
+
+        setIsLoading(true);
+        // Simular llamada a API
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        setIsLoading(false);
+        console.log('Registro exitoso:', formData);
+        alert('¡Cuenta creada con éxito! (Simulado)');
+    };
+
     return (
         <div className="bg-white py-8 px-4 shadow-xl shadow-gray-200/50 border border-gray-100 sm:rounded-2xl sm:px-10">
             <div className="text-center mb-8">
@@ -29,24 +76,87 @@ export const RegisterForm = ({ onSwitchToLogin }) => {
                 </div>
             </div>
 
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-2 gap-4">
-                    <FormField label="Nombre" id="first-name" type="text" placeholder=" Alex" />
-                    <FormField label="Apellido" id="last-name" type="text" placeholder=" Johnson" />
+                    <FormField 
+                        label="Nombre" 
+                        id="firstName" 
+                        type="text" 
+                        placeholder="Alex" 
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        error={errors.firstName}
+                    />
+                    <FormField 
+                        label="Apellido" 
+                        id="lastName" 
+                        type="text" 
+                        placeholder="Johnson" 
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        error={errors.lastName}
+                    />
                 </div>
 
-                <FormField label="Email" id="email" type="email" placeholder=" tu@ejemplo.com" />
+                <FormField 
+                    label="Email" 
+                    id="email" 
+                    type="email" 
+                    placeholder="tu@ejemplo.com" 
+                    value={formData.email}
+                    onChange={handleChange}
+                    error={errors.email}
+                />
 
-                <FormField label="Contraseña" id="password" type="password" placeholder=" ••••••••" />
+                <FormField 
+                    label="Contraseña" 
+                    id="password" 
+                    type={showPassword ? 'text' : 'password'} 
+                    placeholder="••••••••" 
+                    value={formData.password}
+                    onChange={handleChange}
+                    error={errors.password}
+                    rightElement={
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="text-gray-400 hover:text-orange-600 transition-colors"
+                        >
+                            <span className="material-symbols-outlined text-xl">
+                                {showPassword ? 'visibility_off' : 'visibility'}
+                            </span>
+                        </button>
+                    }
+                />
 
-                <div className="flex items-start gap-2 pt-2">
-                    <input type="checkbox" id="terms" className="mt-1 rounded border-gray-300 text-orange-600 focus:ring-orange-500" />
-                    <label htmlFor="terms" className="text-xs text-gray-500 leading-tight">
-                        Al registrarte, aceptas nuestros <a href="#" className="text-orange-600 font-bold">Términos de Servicio</a> y <a href="#" className="text-orange-600 font-bold">Política de Privacidad</a>.
-                    </label>
+                <div className="flex flex-col gap-1 pt-2">
+                    <div className="flex items-start gap-2">
+                        <input 
+                            type="checkbox" 
+                            id="terms" 
+                            checked={formData.terms}
+                            onChange={handleChange}
+                            className={`mt-1 rounded border-gray-300 text-orange-600 focus:ring-orange-500 transition-colors ${errors.terms ? 'border-red-500' : ''}`} 
+                        />
+                        <label htmlFor="terms" className="text-xs text-gray-500 leading-tight">
+                            Al registrarte, aceptas nuestros <a href="#" className="text-orange-600 font-bold">Términos de Servicio</a> y <a href="#" className="text-orange-600 font-bold">Política de Privacidad</a>.
+                        </label>
+                    </div>
+                    {errors.terms && <p className="text-[10px] text-red-500 font-medium">{errors.terms}</p>}
                 </div>
 
-                <Button type="submit" className="w-full py-3 mt-4">Crear Cuenta</Button>
+                <Button 
+                    type="submit" 
+                    className="w-full py-3 mt-4 flex justify-center items-center gap-2"
+                    disabled={isLoading}
+                >
+                    {isLoading ? (
+                        <>
+                            <span className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full"></span>
+                            Procesando...
+                        </>
+                    ) : 'Crear Cuenta'}
+                </Button>
             </form>
 
             <div className="mt-6 text-center">
