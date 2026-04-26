@@ -18,6 +18,10 @@ export const Navbar = () => {
                             Iniciar Sesión
                         </Button>
                     </Link>
+                    <Link to="/carrito" className="text-gray-600 hover:text-orange-600 transition-colors flex items-center gap-1">
+                        <span className="material-symbols-outlined">shopping_cart</span>
+                        <span className="hidden sm:inline">Carrito</span>
+                    </Link>
                 </div>
             </div>
         </nav>
