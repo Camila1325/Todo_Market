@@ -1,24 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { MainLayout } from '../components/templates/mainLayout';
+import { Button } from '../components/atoms/button';
+import { FeatureCard } from '../components/molecules/featureCard';
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-white font-sans text-gray-900">
-
-      <nav className="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto">
-        <div className="flex items-center gap-2">
-          <div className="bg-orange-600 p-1.5 rounded-lg">
-            <span className="material-symbols-outlined text-white text-2xl">shopping_bag</span>
-          </div>
-          <span className="text-2xl font-bold tracking-tight">Todo Market</span>
-        </div>
-        <div className="space-x-8 font-medium text-gray-600">
-          <Link to="/market" className="hover:text-orange-600 transition-colors">Tienda</Link>
-          <Link to="/Auth" className="bg-gray-900 text-white px-5 py-2.5 rounded-full hover:bg-gray-800 transition-all">Iniciar Sesión</Link>
-        </div>
-      </nav>
-
-      <main className="max-w-7xl mx-auto px-8 py-12 lg:py-20 grid lg:grid-cols-2 gap-12 items-center">
+    <MainLayout>
+      <section className="max-w-7xl mx-auto px-8 py-12 lg:py-20 grid lg:grid-cols-2 gap-12 items-center">
         <div className="space-y-8 animate-in slide-in-from-left duration-700">
           <span className="inline-block px-4 py-1.5 bg-orange-100 text-orange-700 rounded-full text-sm font-bold uppercase tracking-wide">
             Nueva Colección 2026
@@ -31,15 +20,14 @@ const Home = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <Link
-              to="/market"
-              className="px-10 py-4 bg-orange-600 text-white font-bold rounded-2xl shadow-lg shadow-orange-200 hover:bg-orange-500 hover:-translate-y-1 transition-all active:scale-95 text-center text-lg"
-            >
-              Comprar Ahora
+            <Link to="/market">
+              <Button className="px-10 py-4 text-lg w-full sm:w-auto">
+                Comprar Ahora
+              </Button>
             </Link>
-            <button className="px-10 py-4 bg-white border-2 border-gray-200 text-gray-900 font-bold rounded-2xl hover:bg-gray-50 transition-all text-lg">
+            <Button variant="outline" className="px-10 py-4 text-lg">
               Ver Ofertas
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -51,28 +39,28 @@ const Home = () => {
             className="relative rounded-[2.5rem] shadow-2xl object-cover h-[500px] w-full"
           />
         </div>
-      </main>
+      </section>
 
-      <section className="bg-gray-50 py-16 mt-12">
-        <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
-          <div className="space-y-3">
-            <span className="material-symbols-outlined text-4xl text-orange-600">local_shipping</span>
-            <h3 className="text-xl font-bold">Envío Rápido</h3>
-            <p className="text-gray-500">Recibe tus productos en menos de 48 horas en las ciudades principales.</p>
-          </div>
-          <div className="space-y-3">
-            <span className="material-symbols-outlined text-4xl text-orange-600">verified_user</span>
-            <h3 className="text-xl font-bold">Compra Segura</h3>
-            <p className="text-gray-500">Garantía de devolución de 30 días si no estás satisfecho.</p>
-          </div>
-          <div className="space-y-3">
-            <span className="material-symbols-outlined text-4xl text-orange-600">headset_mic</span>
-            <h3 className="text-xl font-bold">Soporte 24/7</h3>
-            <p className="text-gray-500">Estamos aquí para ayudarte en cualquier momento de tu compra.</p>
-          </div>
+      <section className="bg-gray-50 py-16">
+        <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-3 gap-10">
+          <FeatureCard
+            icon="local_shipping"
+            title="Envío Rápido"
+            description="Recibe tus productos en menos de 48 horas en las ciudades principales."
+          />
+          <FeatureCard
+            icon="verified_user"
+            title="Compra Segura"
+            description="Garantía de devolución de 30 días si no estás satisfecho con tu producto."
+          />
+          <FeatureCard
+            icon="headset_mic"
+            title="Soporte 24/7"
+            description="Nuestro equipo está disponible en cualquier momento para ayudarte."
+          />
         </div>
       </section>
-    </div>
+    </MainLayout>
   );
 };
 
