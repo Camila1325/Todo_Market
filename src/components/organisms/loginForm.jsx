@@ -16,7 +16,7 @@ export const LoginForm = ({ onSwitchToRegister }) => {
         const newErrors = {};
         if (!formData.email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)) newErrors.email = 'Email inválido';
         if (!formData.password) newErrors.password = 'La contraseña es obligatoria';
-        
+
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -61,11 +61,11 @@ export const LoginForm = ({ onSwitchToRegister }) => {
             </div>
 
             <form className="space-y-5" onSubmit={handleSubmit}>
-                <FormField 
-                    label="Email" 
-                    id="email" 
-                    type="email" 
-                    placeholder="tu@ejemplo.com" 
+                <FormField
+                    label="Email"
+                    id="email"
+                    type="email"
+                    placeholder="tu@ejemplo.com"
                     value={formData.email}
                     onChange={handleChange}
                     error={errors.email}
@@ -76,10 +76,10 @@ export const LoginForm = ({ onSwitchToRegister }) => {
                         <label className="text-sm font-medium text-gray-900">Contraseña</label>
                         <a href="#" className="text-xs font-semibold text-orange-600">¿Olvidaste tu contraseña?</a>
                     </div>
-                    <FormField 
-                        id="password" 
-                        type={showPassword ? 'text' : 'password'} 
-                        placeholder="••••••••" 
+                    <FormField
+                        id="password"
+                        type={showPassword ? 'text' : 'password'}
+                        placeholder="••••••••"
                         value={formData.password}
                         onChange={handleChange}
                         error={errors.password}
@@ -97,8 +97,8 @@ export const LoginForm = ({ onSwitchToRegister }) => {
                     />
                 </div>
 
-                <Button 
-                    type="submit" 
+                <Button
+                    type="submit"
                     className="w-full py-3 flex justify-center items-center gap-2"
                     disabled={isLoading}
                 >
@@ -114,7 +114,7 @@ export const LoginForm = ({ onSwitchToRegister }) => {
             <div className="mt-6 text-center">
                 <p className="text-sm text-gray-600">
                     ¿No tienes una cuenta?{' '}
-                    <button 
+                    <button
                         onClick={onSwitchToRegister}
                         className="font-bold text-orange-600 hover:text-orange-500 transition-colors"
                     >
@@ -124,4 +124,4 @@ export const LoginForm = ({ onSwitchToRegister }) => {
             </div>
         </div>
     );
-};
+};

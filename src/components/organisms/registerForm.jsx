@@ -22,7 +22,7 @@ export const RegisterForm = ({ onSwitchToLogin }) => {
         if (!formData.email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)) newErrors.email = 'Email inválido';
         if (formData.password.length < 8) newErrors.password = 'Mínimo 8 caracteres';
         if (!formData.terms) newErrors.terms = 'Debes aceptar los términos';
-        
+
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -78,41 +78,41 @@ export const RegisterForm = ({ onSwitchToLogin }) => {
 
             <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-2 gap-4">
-                    <FormField 
-                        label="Nombre" 
-                        id="firstName" 
-                        type="text" 
-                        placeholder="Alex" 
+                    <FormField
+                        label="Nombre"
+                        id="firstName"
+                        type="text"
+                        placeholder="Alex"
                         value={formData.firstName}
                         onChange={handleChange}
                         error={errors.firstName}
                     />
-                    <FormField 
-                        label="Apellido" 
-                        id="lastName" 
-                        type="text" 
-                        placeholder="Johnson" 
+                    <FormField
+                        label="Apellido"
+                        id="lastName"
+                        type="text"
+                        placeholder="Johnson"
                         value={formData.lastName}
                         onChange={handleChange}
                         error={errors.lastName}
                     />
                 </div>
 
-                <FormField 
-                    label="Email" 
-                    id="email" 
-                    type="email" 
-                    placeholder="tu@ejemplo.com" 
+                <FormField
+                    label="Email"
+                    id="email"
+                    type="email"
+                    placeholder="tu@ejemplo.com"
                     value={formData.email}
                     onChange={handleChange}
                     error={errors.email}
                 />
 
-                <FormField 
-                    label="Contraseña" 
-                    id="password" 
-                    type={showPassword ? 'text' : 'password'} 
-                    placeholder="••••••••" 
+                <FormField
+                    label="Contraseña"
+                    id="password"
+                    type={showPassword ? 'text' : 'password'}
+                    placeholder="••••••••"
                     value={formData.password}
                     onChange={handleChange}
                     error={errors.password}
@@ -131,12 +131,12 @@ export const RegisterForm = ({ onSwitchToLogin }) => {
 
                 <div className="flex flex-col gap-1 pt-2">
                     <div className="flex items-start gap-2">
-                        <input 
-                            type="checkbox" 
-                            id="terms" 
+                        <input
+                            type="checkbox"
+                            id="terms"
                             checked={formData.terms}
                             onChange={handleChange}
-                            className={`mt-1 rounded border-gray-300 text-orange-600 focus:ring-orange-500 transition-colors ${errors.terms ? 'border-red-500' : ''}`} 
+                            className={`mt-1 rounded border-gray-300 text-orange-600 focus:ring-orange-500 transition-colors ${errors.terms ? 'border-red-500' : ''}`}
                         />
                         <label htmlFor="terms" className="text-xs text-gray-500 leading-tight">
                             Al registrarte, aceptas nuestros <a href="#" className="text-orange-600 font-bold">Términos de Servicio</a> y <a href="#" className="text-orange-600 font-bold">Política de Privacidad</a>.
@@ -145,8 +145,8 @@ export const RegisterForm = ({ onSwitchToLogin }) => {
                     {errors.terms && <p className="text-[10px] text-red-500 font-medium">{errors.terms}</p>}
                 </div>
 
-                <Button 
-                    type="submit" 
+                <Button
+                    type="submit"
                     className="w-full py-3 mt-4 flex justify-center items-center gap-2"
                     disabled={isLoading}
                 >
