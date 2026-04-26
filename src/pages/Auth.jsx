@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Logo } from '../components/atoms/logo';
 import { LoginForm } from '../components/organisms/loginForm';
 import { RegisterForm } from '../components/organisms/registerForm';
@@ -10,7 +11,9 @@ const Auth = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 font-sans antialiased">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center mb-6">
         <div className="flex justify-center mb-4">
-          <Logo size="text-3xl" />
+          <Link to="/">
+            <Logo size="text-3xl" />
+          </Link>
         </div>
         <h2 className="text-2xl font-bold text-gray-800 tracking-tight">
           {isLogin ? '¡Qué bueno verte de nuevo!' : '¡Únete a Todo Market!'}
