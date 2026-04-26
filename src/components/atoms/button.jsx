@@ -5,6 +5,7 @@ export const Button = ({ children, variant = 'primary', className = '', ...props
         primary: 'bg-orange-600 text-white hover:bg-orange-500 shadow-lg shadow-orange-200',
         secondary: 'bg-gray-900 text-white hover:bg-gray-800',
         outline: 'bg-white border-2 border-gray-200 text-gray-900 hover:bg-gray-50',
+        danger: 'bg-red-600 text-white hover:bg-red-500 shadow-lg shadow-red-200',
     };
 
     return (

@@ -25,9 +25,11 @@ const Home = () => {
                 Comprar Ahora
               </Button>
             </Link>
-            <Button variant="outline" className="px-10 py-4 text-lg">
-              Ver Ofertas
-            </Button>
+            <Link to="/ofertas">
+              <Button variant="danger" className="px-10 py-4 text-lg w-full sm:w-auto">
+                Ver Ofertas
+              </Button>
+            </Link>
           </div>
         </div>
 

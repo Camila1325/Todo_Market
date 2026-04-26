@@ -12,6 +12,10 @@ export const Navbar = () => {
                 </Link>
 
                 <div className="flex items-center gap-8 font-medium text-gray-600">
+                    <Link to="/ofertas" className="text-red-500 font-bold hover:text-red-600 transition-colors flex items-center gap-1">
+                        <span className="material-symbols-outlined text-lg">local_fire_department</span>
+                        Ofertas
+                    </Link>
                     <Link to="/store" className="hover:text-orange-600 transition-colors">Catálogo</Link>
                     <Link to="/auth">
                         <Button variant="primary" className="px-5 py-2 rounded-full text-sm">

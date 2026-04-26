@@ -3,7 +3,7 @@ import { Button } from '../atoms/button';
 import { FormField } from '../molecules/formField';
 import { SocialButton } from '../molecules/socialButton';
 
-export const LoginForm = () => {
+export const LoginForm = ({ onSwitchToRegister }) => {
     return (
         <div className="bg-white py-8 px-4 shadow-xl shadow-gray-200/50 border border-gray-100 sm:rounded-2xl sm:px-10">
             <div className="grid grid-cols-2 gap-3 mb-6">
@@ -37,6 +37,18 @@ export const LoginForm = () => {
 
                 <Button type="submit" className="w-full py-3">Iniciar Sesión</Button>
             </form>
+
+            <div className="mt-6 text-center">
+                <p className="text-sm text-gray-600">
+                    ¿No tienes una cuenta?{' '}
+                    <button 
+                        onClick={onSwitchToRegister}
+                        className="font-bold text-orange-600 hover:text-orange-500 transition-colors"
+                    >
+                        Regístrate aquí
+                    </button>
+                </p>
+            </div>
         </div>
     );
 };
