@@ -12,7 +12,7 @@ export const Navbar = () => {
                 </Link>
 
                 <div className="flex items-center gap-8 font-medium text-gray-600">
-                    <Link to="/catalogo" className="hover:text-orange-600 transition-colors">Catálogo</Link>
+                    <Link to="/store" className="hover:text-orange-600 transition-colors">Catálogo</Link>
                     <Link to="/auth">
                         <Button variant="secondary" className="px-5 py-2 rounded-full text-sm">
                             Iniciar Sesión

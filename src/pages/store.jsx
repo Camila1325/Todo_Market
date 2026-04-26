@@ -1,9 +1,9 @@
 import React from 'react';
 import { CatalogTemplate } from '../components/templates/catalogTemplate';
 import { SearchInput } from '../components/atoms/searchInput';
-import { CategoriesScroller } from '../components/molecules/categoriesScroller';
-import { BentoNovedades } from '../components/molecules/bentoNovedades';
-import { ProductGrid } from '../components/molecules/productGrid';
+import { CategoriesScroller } from '../components/organisms/categoriesScroller';
+import { BentoNovedades } from '../components/organisms/bentoNovedades';
+import { ProductGrid } from '../components/organisms/productGrid';
 import { IconButton } from '../components/atoms/iconButton';
 
 const Catalogo = () => {
