@@ -10,7 +10,7 @@ import Ofertas from './pages/ofertas';
 
 function App() {
   return (
-    <Router basename="/Todo_Market">
+    <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
